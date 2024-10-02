@@ -65,6 +65,7 @@ from .devices.velux_action import CocoVeluxAction
 from .devices.venetianblind_action import CocoVenetianblindAction
 from .devices.virtual_hvac import CocoVirtualHvac
 from .devices.virtual_thermostat import CocoVirtualThermostat
+from .devices.water_centralmeter import CocoWaterCentralmeter
 
 from .const import *
 from .helpers import *

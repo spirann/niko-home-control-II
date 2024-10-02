@@ -404,7 +404,6 @@ class CoCo:
                     'CocoVeluxKlf200Motor',
                     'CocoVenetianblindMotor',
                     'CocoVentilationcontrollerfeedbackPanel',
-                    'CocoWaterCentralmeter',
                     'CocoZonevalveHvac'
                 ]:
                     _LOGGER.debug(f"Skipping {device[MQTT_DATA_PARAMS_DEVICES_UUID]} of {classname}")

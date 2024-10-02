@@ -2,6 +2,9 @@ import logging
 
 from homeassistant.const import CONF_USERNAME
 
+from .entities.water_centralmeter_flow import Nhc2WaterCentralmeterFlowEntity
+from .entities.water_centralmeter_segment import Nhc2WaterCentralmeterSegmentEntity
+from .entities.water_centralmeter_water_volume import Nhc2WaterCentralmeterWaterVolumeEntity
 from .nhccoco.coco import CoCo
 
 from .entities.accesscontrol_action_basicstate import Nhc2AccesscontrolActionBasicStateEntity
@@ -94,6 +97,7 @@ from .nhccoco.devices.virtual_hvac import CocoVirtualHvac
 from .nhccoco.devices.virtual_thermostat import CocoVirtualThermostat
 
 from .const import DOMAIN, KEY_GATEWAY
+from .nhccoco.devices.water_centralmeter import CocoWaterCentralmeter
 
 KEY_ENTITY = 'nhc2_sensors'
 
@@ -411,5 +415,16 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                 entities.append(Nhc2GenericChargingstationEvStatusEntity(device_instance, hub, gateway))
             if device_instance.supports_charging_status:
                 entities.append(Nhc2GenericChargingstationChargingStatusEntity(device_instance, hub, gateway))
+
+        async_add_entities(entities)
+
+    device_instances = gateway.get_device_instances(CocoWaterCentralmeter)
+    _LOGGER.info('→ Found %s Water Metering modules', len(device_instances))
+    if len(device_instances) > 0:
+        entities = []
+        for device_instance in device_instances:
+            entities.append(Nhc2WaterCentralmeterWaterVolumeEntity(device_instance, hub, gateway))
+            entities.append(Nhc2WaterCentralmeterFlowEntity(device_instance, hub, gateway))
+            entities.append(Nhc2WaterCentralmeterSegmentEntity(device_instance, hub, gateway))
 
         async_add_entities(entities)

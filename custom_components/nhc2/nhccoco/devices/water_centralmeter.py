@@ -18,6 +18,14 @@ class CocoWaterCentralmeter(CoCoDevice):
         return self.extract_parameter_value(PARAMETER_FLOW)
 
     @property
+    def possible_flows(self) -> list:
+        self.extract_property_definition_description_choices(PARAMETER_FLOW)
+
+    @property
+    def segment(self) -> str:
+        return self.extract_parameter_value(PARAMETER_SEGMENT)
+
+    @property
     def possible_segments(self) -> list:
         self.extract_property_definition_description_choices(PARAMETER_SEGMENT)
 

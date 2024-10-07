@@ -4,6 +4,7 @@ from homeassistant.const import CONF_USERNAME
 
 from .entities.water_centralmeter_flow import Nhc2WaterCentralmeterFlowEntity
 from .entities.water_centralmeter_segment import Nhc2WaterCentralmeterSegmentEntity
+from .entities.water_centralmeter_pulse_per_unit import Nhc2WaterCentralmeterPulsePerUnitEntity
 from .entities.water_centralmeter_water_volume import Nhc2WaterCentralmeterWaterVolumeEntity
 from .nhccoco.coco import CoCo
 
@@ -426,5 +427,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
             entities.append(Nhc2WaterCentralmeterWaterVolumeEntity(device_instance, hub, gateway))
             entities.append(Nhc2WaterCentralmeterFlowEntity(device_instance, hub, gateway))
             entities.append(Nhc2WaterCentralmeterSegmentEntity(device_instance, hub, gateway))
+            entities.append(Nhc2WaterCentralmeterPulsePerUnitEntity(device_instance, hub, gateway))
 
         async_add_entities(entities)
